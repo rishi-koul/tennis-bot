@@ -42,6 +42,10 @@ if(datetime.now().hour == 0):
     login_button = driver.find_element(By.ID, "LoginButton")
     login_button.click()
 
+    # Make sure we are at the login page
+    WebDriverWait(driver, 5).until(
+        EC.presence_of_all_elements_located((By.ID, "ctl00_ContentPlaceHolder1_StartTimePicker_dateInput"))
+    )
     # open the date picker
     date_picker = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_StartTimePicker_dateInput")
     date_picker.send_keys("value", "5:00")
